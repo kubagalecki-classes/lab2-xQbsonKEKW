@@ -5,7 +5,6 @@
 
 using namespace std;
 
-
 class ResourceManager
 {
 public:
@@ -14,9 +13,8 @@ public:
     res = new Resource;
   }
 
-    ResourceManager(const ResourceManager& rs) // copying constructor
+    ResourceManager(const ResourceManager& rs)
     {
-        cout << "copying_constr" << endl;
         res = new Resource{*rs.res};
         cout << res << endl;
     }
@@ -24,35 +22,29 @@ public:
     ResourceManager& operator=(const ResourceManager& rs)
     {
         if (!(res == nullptr)) {
-            cout << "selfDeleting" << endl;
             delete res;
         }
-        cout << "copying_operator" << endl;
         res = new Resource{*rs.res};
         cout << res << endl;
         return *this;
     }
 
-    ResourceManager(ResourceManager&& rs) // moving constructor
+    ResourceManager(ResourceManager&& rs)
     {
-        cout << "moving_constr" << endl;
-        res    = move(rs.res); // wywola konstruktor przenoszacy
+        res    = move(rs.res);
         rs.res = nullptr;
     }
 
     ResourceManager& operator=(ResourceManager&& rs)
     {
-        if (&rs == this) // prevent self-copying
+        if (&rs == this)
         {
-            cout << "selfMoving!!!!!!!!!!!!!!!!!!!!!!!" << endl;
             return *this;
         }
         else if (!(res == nullptr)) {
-            cout << "selfDeleting" << endl;
             delete res;
         }
-        cout << "moving_operator" << endl;
-        res = move(rs.res); // wywola konstruktor przenoszacy
+        res = move(rs.res);
 
         rs.res = nullptr;
         return *this;
@@ -60,7 +52,6 @@ public:
 
     ~ResourceManager()
     {
-        cout << "deconst" << endl;
         cout << res << endl;
         delete res;
     }
