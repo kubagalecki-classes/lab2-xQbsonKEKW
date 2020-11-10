@@ -27,7 +27,7 @@ public:
                 wektor[i] *= 0.;
         }
         else {
-            ; //TODO: dokończ zadanie 6
+            ; // TODO: dokończ zadanie 6
         }
     }
 
@@ -39,7 +39,6 @@ public:
 private:
     int dlugosc;
     int pojemnosc;
-    int 
 };
 
 int main()
